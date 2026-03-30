@@ -9,7 +9,7 @@
 //! [`comp_cat_rs::effect::stream::Stream`]-based interface
 //! ([`scan_entities`]) for composable, lazy iteration.
 
-use std::rc::Rc;
+use std::sync::Arc;
 
 use comp_cat_rs::effect::io::Io;
 use comp_cat_rs::effect::stream::Stream;
@@ -220,7 +220,7 @@ pub fn scan_next(bytes: &[u8], position: usize) -> Option<(ScannedEntity, usize)
 pub fn scan_entities(content: String) -> Stream<Error, ScannedEntity> {
     Stream::unfold(
         (content, 0usize),
-        Rc::new(|(content, pos): (String, usize)| {
+        Arc::new(|(content, pos): (String, usize)| {
             Io::suspend(move || {
                 Ok(scan_next(content.as_bytes(), pos)
                     .map(|(entity, next_pos)| (entity, (content, next_pos))))

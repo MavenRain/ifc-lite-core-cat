@@ -24,56 +24,61 @@ parsing logic pure and composable.
 ## Quick Start
 
 ```rust
-use ifc_lite_core::{parse_entity, EntityId, IfcType};
+use ifc_lite_core::{parse_entity, EntityId, IfcType, Error};
 
-let input = "#123=IFCWALL('guid',$,$,$,'Wall-001',$,$,$);";
-let (id, ifc_type, attrs) = parse_entity(input).unwrap();
-assert_eq!(id, EntityId::new(123));
-assert_eq!(ifc_type, IfcType::IfcWall);
+fn main() -> Result<(), Error> {
+    let input = "#123=IFCWALL('guid',$,$,$,'Wall-001',$,$,$);";
+    let (id, ifc_type, attrs) = parse_entity(input)?;
+    assert_eq!(id, EntityId::new(123));
+    assert_eq!(ifc_type, IfcType::IfcWall);
+    Ok(())
+}
 ```
 
 ## Scanning with comp-cat-rs Stream
 
 ```rust
-use ifc_lite_core::scan::scan_entities;
+use ifc_lite_core::{scan::scan_entities, Error};
 
-let content = std::fs::read_to_string("model.ifc").unwrap();
-let entities = scan_entities(content)
-    .collect()
-    .run()
-    .unwrap();
-println!("Found {} entities", entities.len());
+fn main() -> Result<(), Error> {
+    let content = std::fs::read_to_string("model.ifc")?;
+    let entities = scan_entities(content)
+        .collect()
+        .run()?;
+    println!("Found {} entities", entities.len());
+    Ok(())
+}
 ```
 
 ## Decoding entities with comp-cat-rs Io
 
 ```rust
-use ifc_lite_core::decode::{decode_entity, decode_by_id};
-use ifc_lite_core::scan::build_entity_index;
+use ifc_lite_core::{decode::{decode_entity, decode_by_id}, scan::build_entity_index, Error};
 
-let content = std::fs::read_to_string("model.ifc").unwrap();
-let index = build_entity_index(&content);
+fn main() -> Result<(), Error> {
+    let content = std::fs::read_to_string("model.ifc")?;
+    let index = build_entity_index(&content);
 
-// Decode a specific entity by id -- returns Io<Error, DecodedEntity>
-let wall = decode_by_id(&content, &index, 42.into())
-    .run()
-    .unwrap();
-println!("Entity: {} ({})", wall.id(), wall.ifc_type());
+    // Decode a specific entity by id -- returns Io<Error, DecodedEntity>
+    let wall = decode_by_id(&content, &index, 42.into())
+        .run()?;
+    println!("Entity: {} ({})", wall.id(), wall.ifc_type());
+    Ok(())
+}
 ```
 
 ## Streaming parse events
 
 ```rust
-use ifc_lite_core::streaming::{parse_stream, StreamConfig, ParseEvent};
+use ifc_lite_core::{streaming::{parse_stream, StreamConfig, ParseEvent}, Error};
 
-let content = std::fs::read_to_string("model.ifc").unwrap();
-let events = parse_stream(content, StreamConfig::default())
-    .collect()
-    .run()
-    .unwrap();
+fn main() -> Result<(), Error> {
+    let content = std::fs::read_to_string("model.ifc")?;
+    let events = parse_stream(content, StreamConfig::default())
+        .collect()
+        .run()?;
 
-for event in &events {
-    match event {
+    events.iter().for_each(|event| match event {
         ParseEvent::EntityScanned { entity } => {
             println!("#{}: {}", entity.id(), entity.ifc_type());
         }
@@ -81,7 +86,8 @@ for event in &events {
             println!("Done: {entity_count} entities");
         }
         _ => {}
-    }
+    });
+    Ok(())
 }
 ```
 

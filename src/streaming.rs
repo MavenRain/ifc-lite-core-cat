@@ -4,7 +4,7 @@
 //! values.  Callers compose the stream with `map`, `fold`, or
 //! `collect` and defer `run` to the boundary.
 
-use std::rc::Rc;
+use std::sync::Arc;
 
 use comp_cat_rs::effect::io::Io;
 use comp_cat_rs::effect::stream::Stream;
@@ -140,7 +140,7 @@ pub fn parse_stream(content: String, config: StreamConfig) -> Stream<Error, Pars
             completed: false,
             entity_count: 0,
         },
-        Rc::new(move |state: ParseState| {
+        Arc::new(move |state: ParseState| {
             Io::suspend(move || {
                 if state.completed {
                     Ok(None)
