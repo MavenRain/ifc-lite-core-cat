@@ -209,7 +209,7 @@ pub fn scan_next(bytes: &[u8], position: usize) -> Option<(ScannedEntity, usize)
 /// # Examples
 ///
 /// ```
-/// use ifc_lite_core::scan::scan_entities;
+/// use ifc_lite_core_cat::scan::scan_entities;
 ///
 /// let content = "#1=IFCPROJECT('g',$,$,$,$,$,$,$,$);".to_string();
 /// let stream = scan_entities(content);

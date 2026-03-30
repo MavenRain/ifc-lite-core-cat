@@ -13,7 +13,7 @@
 /// # Examples
 ///
 /// ```
-/// use ifc_lite_core::EntityId;
+/// use ifc_lite_core_cat::EntityId;
 ///
 /// let id = EntityId::new(42);
 /// assert_eq!(id.value(), 42);

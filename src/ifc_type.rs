@@ -14,7 +14,7 @@
 /// # Examples
 ///
 /// ```
-/// use ifc_lite_core::IfcType;
+/// use ifc_lite_core_cat::IfcType;
 ///
 /// let t = IfcType::from_name("IFCWALL");
 /// assert_eq!(t, IfcType::IfcWall);

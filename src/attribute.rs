@@ -150,7 +150,7 @@ impl AttributeValue {
 /// # Examples
 ///
 /// ```
-/// use ifc_lite_core::{EntityId, IfcType, DecodedEntity, AttributeValue};
+/// use ifc_lite_core_cat::{EntityId, IfcType, DecodedEntity, AttributeValue};
 ///
 /// let entity = DecodedEntity::new(
 ///     EntityId::new(1),

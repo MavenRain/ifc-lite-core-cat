@@ -1,5 +1,5 @@
 [package]
-name = "ifc-lite-core"
+name = "ifc-lite-core-cat"
 version = "0.1.0"
 edition = "2024"
 description = "High-performance IFC/STEP parser for building data, built on comp-cat-rs"

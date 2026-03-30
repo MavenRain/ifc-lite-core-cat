@@ -191,7 +191,7 @@ fn list(input: &str) -> IResult<&str, Token<'_>> {
 /// # Examples
 ///
 /// ```
-/// use ifc_lite_core::{parse_entity, EntityId, IfcType};
+/// use ifc_lite_core_cat::{parse_entity, EntityId, IfcType};
 ///
 /// let line = "#123=IFCWALL('guid',$,$,$,'Wall',$,$,$);";
 /// let (id, ifc_type, attrs) = parse_entity(line).unwrap();

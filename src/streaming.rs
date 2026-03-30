@@ -118,7 +118,7 @@ struct ParseState {
 /// # Examples
 ///
 /// ```
-/// use ifc_lite_core::streaming::{parse_stream, StreamConfig, ParseEvent};
+/// use ifc_lite_core_cat::streaming::{parse_stream, StreamConfig, ParseEvent};
 ///
 /// let content = "#1=IFCPROJECT('g',$,$,$,$,$,$,$,$);".to_string();
 /// let events = parse_stream(content, StreamConfig::default())

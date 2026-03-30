@@ -19,7 +19,7 @@
 //! ## Quick Start
 //!
 //! ```rust
-//! use ifc_lite_core::{parse_entity, EntityId, IfcType};
+//! use ifc_lite_core_cat::{parse_entity, EntityId, IfcType};
 //!
 //! let input = "#123=IFCWALL('guid',$,$,$,'Wall-001',$,$,$);";
 //! let (id, ifc_type, attrs) = parse_entity(input).unwrap();
@@ -30,7 +30,7 @@
 //! ## Streaming with comp-cat-rs
 //!
 //! ```rust
-//! use ifc_lite_core::scan::scan_entities;
+//! use ifc_lite_core_cat::scan::scan_entities;
 //!
 //! let content = "#1=IFCPROJECT('g',$,$,$,$,$,$,$,$);".to_string();
 //! let entities = scan_entities(content).collect().run().unwrap();
@@ -40,7 +40,7 @@
 //! ## Decoding entities
 //!
 //! ```rust
-//! use ifc_lite_core::decode::decode_entity;
+//! use ifc_lite_core_cat::decode::decode_entity;
 //!
 //! let line = "#5=IFCWALL('g',$,$,$,'W1',$,$,$);";
 //! let entity = decode_entity(line, 0, line.len()).run().unwrap();

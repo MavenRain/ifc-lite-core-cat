@@ -29,7 +29,7 @@ use crate::parse::parse_entity;
 /// # Examples
 ///
 /// ```
-/// use ifc_lite_core::{decode::decode_entity, EntityId, IfcType};
+/// use ifc_lite_core_cat::{decode::decode_entity, EntityId, IfcType};
 ///
 /// let line = "#5=IFCWALL('guid',$,$,$,'W1',$,$,$);";
 /// let entity = decode_entity(line, 0, line.len()).run().unwrap();
