@@ -1,0 +1,26 @@
+[package]
+name = "ifc-lite-core"
+version = "0.1.0"
+edition = "2024"
+description = "High-performance IFC/STEP parser for building data, built on comp-cat-rs"
+license = "MIT OR Apache-2.0"
+keywords = ["ifc", "bim", "step", "parser", "aec"]
+categories = ["parsing", "data-structures"]
+
+[dependencies]
+comp-cat-rs = { path = "../comp-cat-rs" }
+nom = "7.1"
+memchr = "2.7"
+
+[dev-dependencies]
+proptest = "1"
+
+[lints.clippy]
+all = { level = "deny", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+needless_pass_by_value = "warn"
+manual_map = "warn"
+cast_possible_truncation = "allow"
+cast_sign_loss = "allow"
+cast_precision_loss = "allow"
+module_name_repetitions = "allow"
